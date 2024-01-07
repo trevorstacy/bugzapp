@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bug;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Crypt;
 
 class BugController extends Controller
 {
@@ -12,7 +14,9 @@ class BugController extends Controller
      */
     public function index()
     {
-        //
+        dd(
+            Crypt::decryptString(Bug::find(2)->initialCode)
+        );
     }
 
     /**
@@ -28,7 +32,10 @@ class BugController extends Controller
      */
     public function store(Request $request)
     {
-        Log::debug($request->all());
+        Bug::create([
+            'description' => $request->description,
+            'initialCode' => Crypt::encryptString($request->initialCode),
+        ]);
 
         return 'success';
     }
