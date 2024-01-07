@@ -68,7 +68,7 @@ class BugController extends Controller
      */
     public function update(Request $request, string $hash)
     {
-        Bug::where('reference_hash', $hash)->first()->update([
+        Bug::where('reference_hash', $hash)->update([
             'resolution' => $request->fixDescription
         ]);
 
