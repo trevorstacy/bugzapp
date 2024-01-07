@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('reference_hash');
             $table->text('description');
             $table->text('initial_code');
+            $table->text('keywords');
             $table->text('resolution')->nullable();
             $table->timestamps();
         });

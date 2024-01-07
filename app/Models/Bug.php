@@ -12,6 +12,7 @@ class Bug extends Model
     protected $fillable = [
         'description',
         'initial_code',
+        'keywords',
         'resolution',
         'reference_hash'
     ];

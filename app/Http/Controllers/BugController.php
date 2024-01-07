@@ -39,6 +39,7 @@ class BugController extends Controller
             'reference_hash' => $referenceHash,
             'description' => $request->description,
             'initial_code' => Crypt::encryptString($request->initialCode),
+            'keywords' => $request->keywords,
         ]);
 
         return [
