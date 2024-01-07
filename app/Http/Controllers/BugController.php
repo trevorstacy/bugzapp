@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bug;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Crypt;
@@ -32,12 +33,18 @@ class BugController extends Controller
      */
     public function store(Request $request)
     {
+        $referenceHash = Str::random(20);
+
         Bug::create([
+            'reference_hash' => $referenceHash,
             'description' => $request->description,
-            'initialCode' => Crypt::encryptString($request->initialCode),
+            'initial_code' => Crypt::encryptString($request->initialCode),
         ]);
 
-        return 'success';
+        return [
+            'message' => 'success',
+            'reference_hash' => $referenceHash,
+        ];
     }
 
     /**

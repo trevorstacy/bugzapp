@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('bugs', function (Blueprint $table) {
             $table->id();
+            $table->text('reference_hash');
             $table->text('description');
-            $table->text('initialCode');
+            $table->text('initial_code');
             $table->text('resolution')->nullable();
             $table->timestamps();
         });
