@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Bug extends Model
 {
@@ -12,8 +14,17 @@ class Bug extends Model
     protected $fillable = [
         'description',
         'initial_code',
-        'keywords',
         'resolution',
         'reference_hash'
     ];
+
+    public function keywords()
+    {
+        return $this->hasMany(BugKeyword::class);
+    }
+
+    public static function formatKeywords(string $keywords): Stringable
+    {
+        return Str::of($keywords)->replace(' ', '')->lower();
+    }
 }

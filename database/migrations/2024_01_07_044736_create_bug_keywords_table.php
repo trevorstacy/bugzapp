@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bugs', function (Blueprint $table) {
+        Schema::create('bug_keywords', function (Blueprint $table) {
             $table->id();
-            $table->text('reference_hash');
-            $table->text('description');
-            $table->text('initial_code');
-            $table->text('resolution')->nullable();
+            $table->foreignId('bug_id')->constrained();
+            $table->text('keyword');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bugs');
+        Schema::dropIfExists('bug_keywords');
     }
 };
