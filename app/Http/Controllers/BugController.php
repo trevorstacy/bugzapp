@@ -66,9 +66,13 @@ class BugController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $hash)
     {
-        //
+        Bug::where('reference_hash', $hash)->first()->update([
+            'resolution' => $request->fixDescription
+        ]);
+
+        return ['message' => 'success'];
     }
 
     /**

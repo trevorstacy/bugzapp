@@ -19,4 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('bugs', BugController::class);
+Route::resource('bugs', BugController::class)->only(['store']);
+Route::put('bugs/{hash}', [BugController::class, 'update'])->name('bugs.update');
