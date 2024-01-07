@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('description');
             $table->text('initialCode');
-            $table->text('resolution');
+            $table->text('resolution')->nullable();
             $table->timestamps();
         });
     }
